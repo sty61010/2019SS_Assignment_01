@@ -141,7 +141,7 @@ $('#bg_red').click(function(){
 
 //Undo and Redo
 var cPushArray = new Array();
-// cPushArray.length=10000;
+
 var cStep = -1;
 // var ctx;
 // ctx = document.getElementById('myCanvas').getContext("2d");
@@ -242,9 +242,9 @@ $('#upload').change(function () {
     // var ctx = canvas.getContext('2d');
     var img = new Image();
     img.onload = function () {
-        canvas.width = this.width
-        canvas.height = this.height
-        ctx.drawImage(this, 0, 0, canvas.width, canvas.height)
+        // canvas.width = this.width
+        // canvas.height = this.height
+        ctx.drawImage(this, 0, 0, this.width, this.height)
         URL.revokeObjectURL(src)
     }
     var file = this.files[0];
@@ -319,10 +319,13 @@ function InitThis() {
           Draw_Circle(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
         }
         else if(brushmode=="Rec"){
-          
+          Draw_Rectangle(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
         }
         else if(brushmode=="Tri"){
-          
+          Draw_Triangle(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+        }
+        else{
+          Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
         }
         // cPush();
     });
@@ -335,10 +338,13 @@ function InitThis() {
             Draw_Circle(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
           }
           else if(brushmode=="Rec"){
-            
+            Draw_Rectangle(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true); 
           }
           else if(brushmode=="Tri"){
-          
+            Draw_Triangle(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+          }
+          else{
+            Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
           }
          }
     });
@@ -365,12 +371,12 @@ function Draw(x, y, isDown) {
       cPush();
     lastX = x; lastY = y;
     console.log("Draw Line");
-    console.log("lastX=",x,", lastY=",y);
+    // console.log("lastX=",x,", lastY=",y);
 }
 InitThis();
 
 
-//Shape
+//Shape Circle Rectangle Triangle
 $("#circle").click(function() {
   brushcolor="white";
   brushmode="Cir";
@@ -393,7 +399,7 @@ $("#triangle").click(function() {
 function Draw_Circle(x, y, isDown) {
     if (isDown) {
       // ctx.clearRect(0,0,300,300); 
-      ctx.fillStyle = 'white'; 
+      ctx.fillStyle = brushcolor; 
       ctx.beginPath(); 
       ctx.arc(x,y,20,0,Math.PI*2,true); 
       ctx.fill(); 
@@ -404,4 +410,35 @@ function Draw_Circle(x, y, isDown) {
     console.log("Draw Circle");
     console.log("lastX=",x,", lastY=",y);
 }
+
+function Draw_Rectangle(x, y, isDown) {
+    if (isDown) {
+      // ctx.clearRect(0,0,300,300); 
+      ctx.fillStyle = brushcolor; 
+      ctx.beginPath(); 
+      ctx.fillRect(x, y, 30, 30)
+      ctx.fill(); 
+    }
+    else
+      cPush();
+    lastX = x; lastY = y;
+    console.log("Draw Rectangle");
+    console.log("lastX=",x,", lastY=",y);
+}
  
+function Draw_Triangle(x, y, isDown) {
+    if (isDown) {
+      // ctx.clearRect(0,0,300,300); 
+      ctx.fillStyle = brushcolor; 
+      ctx.beginPath();
+      ctx.moveTo(x,y);
+      ctx.lineTo(x+100,y+75);
+      ctx.lineTo(x-100,y-25);
+      ctx.fill();
+    }
+    else
+      cPush();
+    lastX = x; lastY = y;
+    console.log("Draw Triangle");
+    // console.log("lastX=",x,", lastY=",y);
+}
