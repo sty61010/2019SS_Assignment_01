@@ -4,23 +4,74 @@
   
   <!--  Meta  -->
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AS_01_WebCanvas</title>
 
   <!--  Styles  -->
   <link rel="stylesheet" href="styles/index.css">
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 
   
   
-  <p>Draw your sketch</p>
-  <canvas id="canvas"></canvas>
-  <button id="save">Save</button>
-  <button id="clear">Clear</button>
+  <canvas id="canvas"  height="450"></canvas>
+  <h1>George's Web Canvas</h1>
 
+  <button class="bg-second" id="clear" style="white" >Clear</button>
+  <button class="bg-second" id="eraser" style="white" >Eraser</button>
+  <button class="bg-second" id="pen" style="white" >Pen</button>
+  <button class="bg-second" id="text" style="white" >Text</button>
+  <button class="bg-second" id="triangle" style="white" >Triangle</button>
+  <button class="bg-second" id="rectangle" style="white" >Rectangle</button>
+  <button class="bg-second" id="circle" style="white" >Circle</button>
+  <input type="text" id="text_input" value="<<Image Source>>">
 
-  
+  <table style="width:100%; table-layout:fixed ;" border="0" cellpadding="0">
+    <tr>
+      <th class="bg-primary">Alter</th>
+      <th class="bg-info">Brush</th> 
+      <th class="bg-warning">Style</th>
+      <th class="bg-danger">BackGround Color</th>
+      <th class="bg-success">Brush Color</th>
+    </tr>    
+    <tr>
+      <th><button class="table-primary" id="save_by_web">Save by Web</button></th>
+      <th><button class="table-info" id="brush_very_thin">Very Thin</button></th>
+      <th><button class="table-warning" id="style_1">Pink Bubble</button></th>
+      <th><button class="table-danger" id="bg_black">black</button></th>
+      <th><button class="brushcolor" id="black">black</button></th>
+    </tr>
+    <tr>
+      <th><button class="table-primary"><a id="save_by_dl" href="#" download="Canvas.jpg" >Save by Download</a></button></th>
+      <th><button class="table-info" id="brush_thin">Thin</button></th>
+      <th><button class="table-warning" id="style_2">Blood and Dark</button></th>
+      <th><button class="table-danger" id="bg_purple">purple</button></th>
+      <th><button class="brushcolor" id="purple">purple</button></th>
+    </tr>
+    <tr>
+      <th><button class="table-primary" id="undo">Undo</button></th>
+      <th><button class="table-info" id="brush_mid">middle</button></th>
+      <th><button class="table-warning" id="style_3">Marine Life</button></th>
+      <th><button class="table-danger" id="bg_green">green</button></th>
+      <th><button class="brushcolor" id="green">green</button></th>
+    </tr>
+    <tr>
+      <th><button class="table-primary" id="redo">Redo</button></th>
+      <th><button class="table-info" id="brush_thick">Thick</button></th>
+      <th><button class="table-warning" id="style_4">Forest</button></th>
+      <th><button class="table-danger" id="bg_yellow">yellow</button></th>
+      <th><button class="brushcolor" id="yellow">yellow</button></th>
+    </tr>    
+    <tr>
+      <th><button class="table-primary" id="image">Image</button></th>
+      <th><button class="table-info" id="brush_very_thick">Very Thick</button></th>
+      <th><button class="table-warning" id="style_5">Xcode</button></th>
+      <th><button class="table-danger" id="bg_red">red</button></th>
+      <th><button class="brushcolor" id="red">red</button></th>
+    </tr>
+  </table>
+
 </body>
   <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
