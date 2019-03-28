@@ -218,7 +218,11 @@ function text(x,y) {
 // });
 // text(lastX,lastY);
 
+
+
 //Shape
+
+
 
 //Imager Upload
 $('#image').click(function(){
@@ -232,6 +236,22 @@ $('#image').click(function(){
   // setCanvasBG(); 
   // cPush();
 });  
+
+$('#upload').change(function () {
+    // var canvas = document.getElementById("canvas");
+    // var ctx = canvas.getContext('2d');
+    var img = new Image();
+    img.onload = function () {
+        canvas.width = this.width
+        canvas.height = this.height
+        ctx.drawImage(this, 0, 0, canvas.width, canvas.height)
+        URL.revokeObjectURL(src)
+    }
+    var file = this.files[0];
+    var src = URL.createObjectURL(file);
+    img.src = src;
+});
+
 
 
 
@@ -292,13 +312,35 @@ var lastX, lastY;
 function InitThis() {
     $('#canvas').mousedown(function (e) {
         mousePressed = true;
-        Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+        if(brushmode=="Pen"){
+          Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+        }
+        else if(brushmode=="Cri"){
+          Draw_Circle(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+        }
+        else if(brushmode=="Rec"){
+          
+        }
+        else if(brushmode=="Tri"){
+          
+        }
         // cPush();
     });
     $('#canvas').mousemove(function (e) {
         if (mousePressed) {
+          if(brushmode=="Pen"){
             Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
           }
+          else if(brushmode=="Cir"){
+            Draw_Circle(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+          }
+          else if(brushmode=="Rec"){
+            
+          }
+          else if(brushmode=="Tri"){
+          
+          }
+         }
     });
     $('#canvas').mouseup(function (e) {
         mousePressed = false;
@@ -318,11 +360,48 @@ function Draw(x, y, isDown) {
         ctx.lineTo(x, y);
         ctx.closePath();
         ctx.stroke();
-        // cPush();
     }
     else
       cPush();
     lastX = x; lastY = y;
+    console.log("Draw Line");
     console.log("lastX=",x,", lastY=",y);
 }
 InitThis();
+
+
+//Shape
+$("#circle").click(function() {
+  brushcolor="white";
+  brushmode="Cir";
+  document.getElementById("canvas").style.cursor="help";
+  console.log("Circle");
+});
+$("#rectangle").click(function() {
+  brushcolor="white";
+  brushmode="Rec";
+  document.getElementById("canvas").style.cursor="help";
+  console.log("Rectangle");
+});
+$("#triangle").click(function() {
+  brushcolor="white";
+  brushmode="Tri";
+  document.getElementById("canvas").style.cursor="no-drop";
+  console.log("Triangle");
+});
+
+function Draw_Circle(x, y, isDown) {
+    if (isDown) {
+      // ctx.clearRect(0,0,300,300); 
+      ctx.fillStyle = 'white'; 
+      ctx.beginPath(); 
+      ctx.arc(x,y,20,0,Math.PI*2,true); 
+      ctx.fill(); 
+    }
+    else
+      cPush();
+    lastX = x; lastY = y;
+    console.log("Draw Circle");
+    console.log("lastX=",x,", lastY=",y);
+}
+ 
