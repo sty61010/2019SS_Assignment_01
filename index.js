@@ -6,6 +6,7 @@ var backgroundcolor="#0000e6";
 var brushcolor="#ffffff"
 var brushwide=12;
 var brushmode="Pen";
+var size=document.getElementById("size").value;
 
 //Save
 $("#save_by_web").click(function() {
@@ -178,6 +179,14 @@ $('#redo').click(function(){
 //Text Input
 var nameBuffer = '';
 
+$("#size").click(function(){
+  var value=document.getElementById("size").value;
+  
+  console.log("Size:",value);
+  document.getElementById('value').innerHTML = value;
+
+
+});
 $('#text').click(function(){
   document.getElementById("canvas").style.cursor="text";
   brushmode="Text";
@@ -186,13 +195,15 @@ $('#text').click(function(){
   ctx.fillStyle = "white";
   var input=$("#text_input").val();
   console.log("Text Input:",input);
+  var size=document.getElementById("size").value;
+  ctx.font=size+"pt Arial";
   ctx.fillText(input,lastX,lastY);
   nameBuffer="";
 });
 
 function text(x,y) {
   ctx.textAlign = "left";
-  ctx.font = "2em orbitron";
+  ctx.font = size ;
   ctx.textBaseline = "middle";
   ctx.maxWidth = 500;
   ctx.fillStyle = "transparent";
@@ -401,7 +412,9 @@ function Draw_Circle(x, y, isDown) {
       // ctx.clearRect(0,0,300,300); 
       ctx.fillStyle = brushcolor; 
       ctx.beginPath(); 
-      ctx.arc(x,y,20,0,Math.PI*2,true); 
+      var size=document.getElementById("size").value;
+
+      ctx.arc(x,y,size,0,Math.PI*2,true); 
       ctx.fill(); 
     }
     else
@@ -416,8 +429,11 @@ function Draw_Rectangle(x, y, isDown) {
       // ctx.clearRect(0,0,300,300); 
       ctx.fillStyle = brushcolor; 
       ctx.beginPath(); 
-      ctx.fillRect(x, y, 30, 30)
-      ctx.fill(); 
+      var size=document.getElementById("size").value;
+
+      ctx.fillRect(x, y, size, size);
+      // ctx.fill(); 
+      ctx.stroke;
     }
     else
       cPush();
@@ -432,8 +448,8 @@ function Draw_Triangle(x, y, isDown) {
       ctx.fillStyle = brushcolor; 
       ctx.beginPath();
       ctx.moveTo(x,y);
-      ctx.lineTo(x+100,y+75);
-      ctx.lineTo(x-100,y-25);
+      ctx.lineTo(x+50,y+60);
+      ctx.lineTo(x-50,y-30);
       ctx.fill();
     }
     else
