@@ -9,6 +9,7 @@ var brushmode="Pen";
 var size=document.getElementById("size").value;
 
 //Save
+
 $("#save_by_web").click(function() {
   var html = " ";
   html += "<img src='" + c.toDataURL() + "' alt='from canvas'/>";
