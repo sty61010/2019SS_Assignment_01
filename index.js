@@ -2,11 +2,13 @@
 //Varible
 var c = document.getElementById('canvas');
 var ctx = c.getContext("2d");
-var backgroundcolor="#0000e6";
+var backgroundcolor="#000000";
 var brushcolor="#ffffff"
 var brushwide=12;
 var brushmode="Pen";
 var size=document.getElementById("size").value;
+// var typeface="Arial";
+var typeface=document.getElementById("font").value;
 
 //Save
 
@@ -59,7 +61,34 @@ $('#style_1').click(function(){
   console.log("style_1");
   setCanvasBG(); 
 });
-
+$('#style_2').click(function(){
+  backgroundcolor= "#ff80ff";
+  brushcolor="#ffffff";
+  $('h1').text("<<Blood and Dark>>");
+  console.log("style_2");
+  setCanvasBG(); 
+});
+$('#style_3').click(function(){
+  backgroundcolor= "#0000e6";
+  brushcolor="#ffffff";
+  $('h1').text("<<Frozen>>");
+  console.log("style_3");
+  setCanvasBG(); 
+});
+$('#style_4').click(function(){
+  backgroundcolor= "#ff80ff";
+  brushcolor="#ffffff";
+  $('h1').text("<<Forest>>");
+  console.log("style_4");
+  setCanvasBG(); 
+});
+$('#style_5').click(function(){
+  backgroundcolor= "#000000";
+  brushcolor="#66ff33";
+  $('h1').text("<<Xcode>>");
+  console.log("style_5");
+  setCanvasBG(); 
+});
 //Brush
 $('#brush_very_thin').click(function(){
   console.log("brush_very_thin");
@@ -182,11 +211,8 @@ var nameBuffer = '';
 
 $("#size").click(function(){
   var value=document.getElementById("size").value;
-  
   console.log("Size:",value);
   document.getElementById('value').innerHTML = value;
-
-
 });
 $('#text').click(function(){
   document.getElementById("canvas").style.cursor="text";
@@ -197,10 +223,15 @@ $('#text').click(function(){
   var input=$("#text_input").val();
   console.log("Text Input:",input);
   var size=document.getElementById("size").value;
-  ctx.font=size+"pt Arial";
+  var font=document.getElementById("font");
+  var typeface = font.options[font.selectedIndex].value;
+  console.log("typeface:",typeface);
+  ctx.font=size+"pt "+typeface;
   ctx.fillText(input,lastX,lastY);
-  nameBuffer="";
+  // nameBuffer="";
+  cPush();
 });
+//Font Typeface
 
 function text(x,y) {
   ctx.textAlign = "left";
@@ -246,7 +277,7 @@ $('#image').click(function(){
   canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0); }
   console.log("Image Upload");
   // setCanvasBG(); 
-  // cPush();
+  cPush();
 });  
 
 $('#upload').change(function () {
@@ -261,6 +292,7 @@ $('#upload').change(function () {
     }
     var file = this.files[0];
     var src = URL.createObjectURL(file);
+    cPush();
     img.src = src;
 });
 
@@ -291,7 +323,6 @@ function setCanvasBG(){
   ctx.rect(0, 0, c.width, c.height );
   ctx.fillStyle = backgroundcolor;
   ctx.fill();
-  
 }
 //window resize
 function resizeWindow(){

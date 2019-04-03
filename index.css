@@ -10,7 +10,31 @@ body {
 h1{
   color: #00ffff;
   background-color:#3366ff;
-
+}
+select {
+  background-color: #000000;
+  color: white;
+  font-family: 'Georgia';
+}
+input[type=file] {
+  background-color: #000000;
+  color: white;
+  font-family: 'Georgia';
+}
+input[type=file]:focus {
+  background-color:  #66ff33;
+  border: 3px solid #555;
+  font-family: 'Georgia';
+}
+input[type=text] {
+  background-color: #000000;
+  color: white;
+  font-family: 'Georgia';
+}
+input[type=text]:focus {
+  background-color:#66ff33;
+  border: 3px solid #555;
+  font-family: 'Georgia';
 }
 canvas{
   color: #4d4dff;
@@ -23,6 +47,12 @@ table{
   border-radius: 25px;
   font-family: 'Archivo Narrow', sans-serif;
 }
-botton{
-  font-family: 'Archivo Narrow', sans-serif;
+button {
+  background-color: #000000;
+  color: white;
+  font-family: 'Georgia';
+}
+button:hover {
+  background-color: #ccff66;
+  color: white;
 }
