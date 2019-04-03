@@ -8,8 +8,9 @@ body {
   font-family: 'Archivo Narrow', sans-serif;
 }
 h1{
-  color: #00ffff;
-  background-color:#3366ff;
+  color: #000000;
+  background-color: #00ff00;
+  font-family: 'Georgia';
 }
 select {
   background-color: #000000;

@@ -3,7 +3,7 @@
 var c = document.getElementById('canvas');
 var ctx = c.getContext("2d");
 var backgroundcolor="#000000";
-var brushcolor="#ffffff"
+var brushcolor="#66ff33"
 var brushwide=12;
 var brushmode="Pen";
 var size=document.getElementById("size").value;
@@ -56,15 +56,17 @@ $("#pen").click(function() {
 //Style
 $('#style_1').click(function(){
   backgroundcolor= "#ff80ff";
-  brushcolor="#ffffff";
+  brushcolor="#ff00ff";
+  $("h1").css("background-color", "#ff66cc");
   $('h1').text("<<Pink Bubble>>");
   console.log("style_1");
   setCanvasBG(); 
 });
 $('#style_2').click(function(){
-  backgroundcolor= "#ff80ff";
-  brushcolor="#ffffff";
+  backgroundcolor= "#ff0000";
+  brushcolor="#000000";
   $('h1').text("<<Blood and Dark>>");
+  $("h1").css("background-color", "#ff0000");
   console.log("style_2");
   setCanvasBG(); 
 });
@@ -72,13 +74,15 @@ $('#style_3').click(function(){
   backgroundcolor= "#0000e6";
   brushcolor="#ffffff";
   $('h1').text("<<Frozen>>");
+  $("h1").css("background-color", "#66ffff");
   console.log("style_3");
   setCanvasBG(); 
 });
 $('#style_4').click(function(){
-  backgroundcolor= "#ff80ff";
-  brushcolor="#ffffff";
+  backgroundcolor= "#33cc33";
+  brushcolor=" #ccff66";
   $('h1').text("<<Forest>>");
+  $("h1").css("background-color", "#99ff33");
   console.log("style_4");
   setCanvasBG(); 
 });
@@ -86,6 +90,7 @@ $('#style_5').click(function(){
   backgroundcolor= "#000000";
   brushcolor="#66ff33";
   $('h1').text("<<Xcode>>");
+  $("h1").css("background-color", "#00ff00");
   console.log("style_5");
   setCanvasBG(); 
 });
